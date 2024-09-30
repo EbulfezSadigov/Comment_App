@@ -13,7 +13,7 @@ import { CommentsActionTypes } from './redux/types';
 const App: React.FC = () => {
   const dispatch: ThunkDispatch<RootState, void, CommentsActionTypes> = useDispatch();
   const { comments } = useSelector((state: RootState) => state.comments);
-
+  
   useEffect(() => {
     dispatch(fetchComments());
   }, [dispatch]);

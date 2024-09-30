@@ -1,4 +1,3 @@
-// commentReducer.ts
 import { CommentsActionTypes, CommentsState } from '../types';
 
 const initialState: CommentsState = {
@@ -7,6 +6,11 @@ const initialState: CommentsState = {
 
 export const commentsReducer = (state = initialState, action: CommentsActionTypes) => {
     switch (action.type) {
+        case "FETCH_COMMENTS_SUCCESS":
+            return {
+                ...state,
+                comments: action.payload
+            };
         case "ADD_COMMENT":
             return {
                 ...state,

@@ -5,7 +5,12 @@ import { CommentsActionTypes, FETCH_COMMENTS_SUCCESS, DELETE_COMMENT, ADD_COMMEN
 // Action creators
 export const fetchComments = () => async (dispatch: Dispatch<CommentsActionTypes>) => {
   const response = await axios.get('https://dummyjson.com/comments');
-  dispatch({ type: FETCH_COMMENTS_SUCCESS, payload: response.data.comments });
+  dispatch(
+    {
+      type: FETCH_COMMENTS_SUCCESS,
+      payload: response.data.comments
+    }
+  );
 };
 
 export const addComment = (comment: Comment) => ({

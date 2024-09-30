@@ -1,4 +1,3 @@
-// AddCommentForm.tsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';

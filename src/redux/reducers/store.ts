@@ -1,32 +1,28 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware, combineReducers, Reducer } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer, PersistConfig } from 'redux-persist';
-import { thunk } from 'redux-thunk';
 import { commentsReducer } from './commentReducer';
+import {thunk} from 'redux-thunk';
+import { CommentsActionTypes } from '../types';
 
-// Define the RootState type based on your rootReducer
+const persistConfig: PersistConfig<RootState> = {
+    key: 'root',
+    storage,
+    whitelist: ['comments'],
+};
+
 const rootReducer = combineReducers({
     comments: commentsReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>; // Define RootState
+const persistedReducer = persistReducer<RootState, CommentsActionTypes>(persistConfig, rootReducer as unknown as Reducer<RootState, CommentsActionTypes>);
 
-// Persist config for the RootState
-const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
-    key: 'root',
-    storage,
-    whitelist: ['comments'], // Keep only 'comments' reducer persisted
-};
+export type RootState = ReturnType<typeof rootReducer>;
 
-// Persist the reducer
-const persistedReducer = persistReducer(persistConfig as any, rootReducer as any);
-
-// Create the store with the persisted reducer and thunk middleware
 export const store = createStore(
     persistedReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-// Persistor for the store
 export const persistor = persistStore(store as any);

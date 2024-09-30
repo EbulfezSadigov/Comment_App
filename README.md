@@ -12,8 +12,8 @@ This is a simple application that allows users to add and delete comments. The a
 - React
 - Redux
 - TypeScript
+- Tailwind Css
 - Material-UI
-- Jest (for testing)
 
 ## Getting Started
 To run the project locally:

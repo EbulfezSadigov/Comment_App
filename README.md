@@ -20,4 +20,4 @@ To run the project locally:
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/yourusername/comments-app.git
+   [git clone https://github.com/yourusername/comments-app.git](https://github.com/EbulfezSadigov/Comment_App)
